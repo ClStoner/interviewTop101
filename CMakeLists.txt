@@ -7,3 +7,4 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -g")
 
 add_executable(LinkList             src/LinkList.cpp)
 add_executable(DynamicProgramming   src/DynamicProgramming.cpp)
+add_executable(BinarySearch         src/BinarySearch.cpp)
