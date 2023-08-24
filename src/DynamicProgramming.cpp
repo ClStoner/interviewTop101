@@ -432,24 +432,18 @@ int longestValidParentheses(string s) {
     int n = s.size();
     if(n <= 1) return 0;
     int ans = 0;
-    unordered_map<int, int> m;
-    vector<int> dp(n + 1, 0);
-    int f = 0;
+    int start = -1;
+    stack<int> st;
     for(int i = 0; i < n; ++ i) {
-        if(s[i] == '(') {
-            dp[i + 1] = 0;
-            if(f == 0) m[0] = i - 1;
-            ++ f;
-            m[f] = i;
-        }
+        if(s[i] == '(') st.push(i);
         else {
-            if(f) {
-                -- f;
-                dp[i + 1] = dp[m[f] + 1] +  (i - m[f]);
-                m[f] = i;
+            if(st.empty()) start = i;
+            else {
+                st.pop();
+                if(!st.empty()) ans = max(ans, i - st.top());
+                else ans = max(ans, i - start);
             }
         }
-        ans = max(ans, dp[i + 1]);
     }
     return ans;
 }

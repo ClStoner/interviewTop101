@@ -224,8 +224,6 @@ long long maxWater(vector<int>& arr) {
 };
 int main()
 {
-    string s, t; cin >> s >> t;
-    TwoPointer sol;
-    cout << sol.minWindow(s, t) << endl;
+    cout << "Hello TwoPointer" << endl;
     return 0;
 }
