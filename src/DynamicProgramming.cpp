@@ -345,6 +345,28 @@ int getLongestPalindrome(string s) {
     }
     return ans;
 }
+int Manacher(string str) {
+    string s;
+    s.push_back('#');
+    for(auto ch : str) {
+        s.push_back(ch);
+        s.push_back('#');
+    }
+    int n = s.size();
+    vector<int> dp(n);
+    int ans = 0;
+    for(int i = 0, l = 0, r = -1; i < n; ++ i) {
+        int k = (i > r) ? 1 : min(dp[l + r - i], r - i + 1);
+        while(i - k >= 0 && i + k < n && s[i - k] == s[i + k]) ++ k;
+        dp[i] = k --;
+        ans = max(ans, dp[i]);
+        if(i + k > r) {
+            r = i + k;
+            l = i - k;
+        }
+    }
+    return ans - 1;
+}
 
 /**
  * BM75 编辑距离(一)
@@ -567,6 +589,6 @@ int main()
     string str; cin >> str;
     // string pattern; cin >> pattern;
 
-    cout << sol.longestValidParentheses(str) << endl;
+    cout << sol.Manacher(str) << endl;
     return 0;
 }

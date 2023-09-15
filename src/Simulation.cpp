@@ -135,7 +135,7 @@ public:
         map[key]=dlist.begin();//第一个迭代器
     }
 };
-class Solution {
+class Solution2 {
 public:
     //用list模拟双向链表，双向链表中数组第0位为频率，第1位为key，第2位为val
     //频率到双向链表的哈希表
